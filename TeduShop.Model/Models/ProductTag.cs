@@ -8,7 +8,7 @@ namespace TeduShop.Model.Models
     {
         [Key]
         public int ProductID { set; get; }
-        [ForeignKey("ProductID")]8
+        [ForeignKey("ProductID")]
 
         [Key]
         [MaxLength(50)]
