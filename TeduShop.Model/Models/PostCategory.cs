@@ -22,7 +22,7 @@ namespace TeduShop.Model.Models
 
         public string Discription { set; get; }
         [Required]
-        [Column(TypeName = " varchar")]
+        [Column(TypeName = "varchar")]
         [MaxLength(256)]
         public string Alias { set; get; }
         public int? ParentID { set; get; }

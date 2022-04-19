@@ -5,7 +5,7 @@ using TeduShop.Model.Abstract;
 namespace TeduShop.Model.Models
 {
     [Table("SupportOnlines")]
-    public class SupportOnline : Auditable
+    public class SupportOnline
     {
         [Key]
         public int ID { set; get; }
@@ -19,6 +19,8 @@ namespace TeduShop.Model.Models
         public string Email { set; get; }
         public string Yohoo { set; get; }
         public string Facebook { set; get; }
+
+        public bool Status { set; get; }
   
         public int? DisplayOrder { set; get; }
     }
