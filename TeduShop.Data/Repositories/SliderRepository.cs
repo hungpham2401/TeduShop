@@ -3,8 +3,9 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
-    public interface ISlideRepository : IRepository<Slide>
+    public interface ISlideRepository : IRepositories<Silder>
     {
+
     }
 
     public class SlideRepository : RepositoryBase<Silder>, ISlideRepository

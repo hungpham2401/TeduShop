@@ -7,7 +7,7 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Infrastructure
 {
-    public interface IPageRepository : IRepository<Page>
+    public interface IPageRepository :IRepositories<Page>
     {
     }
 

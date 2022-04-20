@@ -8,12 +8,13 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
 {
-    public interface IFooterRepository : IRepositories<Footer>
+    public interface IPostRepository : IRepositories<Post>
     {
+
     }
-    class FooterRepository : RepositoryBase<Footer>
+    class PostRepository : RepositoryBase<Post> , IPostRepository
     {
-        public FooterRepository(IDbFactory dbFactory) : base(dbFactory)
+        public PostRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
