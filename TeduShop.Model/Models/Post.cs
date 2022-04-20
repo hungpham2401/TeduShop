@@ -21,7 +21,7 @@ namespace TeduShop.Model.Models
         [Column(TypeName = "varchar")]
         public string Alias { set; get; }
 
-        public string CategoryID { set; get; }
+        public int CategoryID { set; get; }
         [ForeignKey ("CategoryID")]
         public IEnumerable <PostTag> PostTags { set; get;  }
 
