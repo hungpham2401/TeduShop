@@ -9,76 +9,85 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Service
 {
+
     public interface IPostService
     {
-        void Add(Post Post);
-        void Update(Post Post);
+        void Add(Post post);
+
+        void Update(Post post);
+
         void Delete(int id);
+
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(string tag, int page, int pageSize, out int TotalRow);
-        IEnumerable<Post> GetAllByCategoryPaging(string tag, int page, int pageSize, out int TotalRow);
+
+        IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
+
         Post GetById(int id);
-        IEnumerable<Post> GetAllTagPaging(string tag, int page, int pageSize, out int TotalRow);
-        void SaveChange();
 
+        IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
 
-
+        void SaveChanges();
     }
+
     public class PostService : IPostService
     {
-        IPostRepository _postRepositories;
+        IPostRepository _postRepository;
         IUnitOfWork _unitOfWork;
-        public PostService (IPostRepository postRepository , IUnitOfWork unitOfWork)
+
+        public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
-            this._postRepositories = postRepository;
+            this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Post Post)
+        public void Add(Post post)
         {
-            _postRepositories.Add(Post);
+            _postRepository.Add(post);
         }
 
         public void Delete(int id)
         {
-            _postRepositories.Delete(id);
+            _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
         {
-            return _postRepositories.GetAll(new string[] { "PostCatetory" });
+            return _postRepository.GetAll(new string[] { "PostCategory" });
         }
 
-        public IEnumerable<Post> GetAllByCategoryPaging(string tag, int page, int pageSize, out int TotalRow)
+        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
         {
-            return _postRepositories.GetMultiPaging(x => x.Status , out TotalRow, page, pageSize, new string[] { "PostCategory" });
+            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
         }
 
-        public IEnumerable<Post> GetAllPaging(string tag, int page, int pageSize, out int TotalRow)
+        public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
-            return _postRepositories.GetMultiPaging(x => x.Status, out TotalRow, page, pageSize);
-            
+            //TODO: Select all post by tag
+            return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
+
         }
 
-        public IEnumerable<Post> GetAllTagPaging(string tag, int page, int pageSize, out int TotalRow)
+        public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
-            //ToDo select all post by tag
-            return _postRepositories.GetMultiPaging(x => x.Status, out TotalRow, page, pageSize);
+            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
         }
 
         public Post GetById(int id)
         {
-            return _postRepositories.GetSingleById(id);
+            return _postRepository.GetSingleById(id);
         }
 
-        public void SaveChange()
+        public void SaveChanges()
         {
             _unitOfWork.Commit();
         }
 
-        public void Update(Post Post)
+        public void Update(Post post)
         {
-            _postRepositories.Update(Post);
+            _postRepository.Update(post);
         }
+
     }
 }
