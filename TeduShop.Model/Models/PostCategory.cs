@@ -20,7 +20,7 @@ namespace TeduShop.Model.Models
         public string Name { set; get; }
         [MaxLength(500)]
 
-        public string Discription { set; get; }
+        public string Description { set; get; }
         [Required]
         [Column(TypeName = "varchar")]
         [MaxLength(256)]
@@ -29,7 +29,7 @@ namespace TeduShop.Model.Models
         public int? DisplayOrder { set; get; }
 
         [MaxLength(256)]
-        public string Images { set; get; }
+        public string Image { set; get; }
 
         public  bool? HomeFlag { set; get; }
         

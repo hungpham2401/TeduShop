@@ -16,7 +16,7 @@ namespace TeduShop.Model.Abstract
         public DateTime? UpdatedDate { set; get; }
 
         [MaxLength(256)]
-        public string UPdateBy { set; get; }
+        public string UpdatedBy { set; get; }
 
 
         [MaxLength(256)]
@@ -25,5 +25,6 @@ namespace TeduShop.Model.Abstract
         public string MetaDescription { set; get; }
 
         public bool Status { set; get; }
+        public  string UPdateBy { get; set; }
     }
 }

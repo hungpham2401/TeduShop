@@ -34,18 +34,18 @@ namespace TeduShop.Model.Models
 
        
         [MaxLength (500)]
-        public string Discription { set; get; }
+        public string Description { set; get; }
 
         public string Content { set; get; }
         //public string DisplayOrder { set; get; }
 
 
         [MaxLength(256)]
-        public string Images { set; get; }
+        public string Image { set; get; }
 
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
-        public bool? ViewCount { set; get; }
+        public int? ViewCount { set; get; }
 
 
       
