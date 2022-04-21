@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeduShop.Model;
 using TeduShop.Model.Models;
 
 namespace TeduShop.Data
@@ -33,6 +34,7 @@ namespace TeduShop.Data
         public DbSet<SystemConfig> SystemConfigs { set; get; }
 
         public DbSet<Tag> Tags { set; get; }
+        public DbSet<Error> Errors { set; get; }
 
 
 
