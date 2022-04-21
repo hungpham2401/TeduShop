@@ -11,18 +11,24 @@ namespace TeduShop.Service
     public interface IPostCategoryService
     {
         PostCategory Add(PostCategory postCategory);
+
         void Update(PostCategory postCategory);
+
         PostCategory Delete(int id);
+
         IEnumerable<PostCategory> GetAll();
-        IEnumerable<PostCategory> GetAllByParentID(int parentID);
-        PostCategory GelById(int id);
-        
+
+        IEnumerable<PostCategory> GetAllByParentId(int parentId);
+
+        PostCategory GetById(int id);
     }
+
     public class PostCategoryService : IPostCategoryService
     {
-        IPostCategoryRepository _postCategoryRepository;
-        IUnitOfWork _unitOfWork;
-        public PostCategoryService (IPostCategoryRepository postCategoryRepository , IUnitOfWork unitOfWork)
+        private IPostCategoryRepository _postCategoryRepository;
+        private IUnitOfWork _unitOfWork;
+
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
@@ -30,32 +36,32 @@ namespace TeduShop.Service
 
         public PostCategory Add(PostCategory postCategory)
         {
-           return _postCategoryRepository.Add(postCategory);
+            return _postCategoryRepository.Add(postCategory);
         }
 
         public PostCategory Delete(int id)
         {
-           return _postCategoryRepository.Delete(id);
-        }
-
-        public PostCategory GelById(int id)
-        {
-            return _postCategoryRepository.GetSingleById(id);
+            return _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
         {
-           return _postCategoryRepository.GetAll();
+            return _postCategoryRepository.GetAll();
         }
 
-        public IEnumerable<PostCategory> GetAllByParentID(int parentID)
+        public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
-            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentID);
+            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+        }
+
+        public PostCategory GetById(int id)
+        {
+            return _postCategoryRepository.GetSingleById(id);
         }
 
         public void Update(PostCategory postCategory)
         {
-             _postCategoryRepository.Update(postCategory);
+            _postCategoryRepository.Update(postCategory);
         }
     }
 }
